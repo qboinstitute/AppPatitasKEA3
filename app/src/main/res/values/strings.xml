@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">AppPatitasKEA3</string>
+    <string name="valtitulologin">AUTENTICACIÓN</string>
+    <string name="valetusuario">Ingrese su usuario</string>
+    <string name="valetpassword">Ingrese su password</string>
+    <string name="valchkrecordar">Guardar Información</string>
+    <string name="valbtnlogin">INGRESAR</string>
+    <string name="valbtnregistrar">REGISTRAR USUARIO</string>
+    <string name="valtituloregistro">REGISTRAR USUARIO</string>
+    <string name="valetnombre">Ingrese su nombre</string>
+    <string name="valetapellido">Ingrese su apellido</string>
+    <string name="valetemail">Ingrese su email</string>
+    <string name="valetcelular">Ingrese su número de celular</string>
+    <string name="valetusuarioreg">Ingrese su usuario</string>
+    <string name="valetpasswordreg">Ingrese su password</string>
+    <string name="valetpasswordreg2">Repita su password</string>
+    <string name="valbtnregistrarusuario">REGISTRAR</string>
+    <string name="valbtnirlogin">IR A LOGIN</string>
 </resources>
