@@ -35,4 +35,8 @@
     <string name="msgerrorregusu">Su usuario es obligatorio</string>
     <string name="msgerrorregpass">Su password es obligatorio</string>
     <string name="msgerrorregpass2">Su password no coincide.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="valnavlistamascota">Mascotas Perdidas</string>
+    <string name="valnavvoluntario">Unete a nosotros</string>
 </resources>

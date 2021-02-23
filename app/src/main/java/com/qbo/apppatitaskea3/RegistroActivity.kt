@@ -3,11 +3,15 @@ package com.qbo.apppatitaskea3
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import com.android.volley.Request
 import com.android.volley.RequestQueue
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import com.qbo.apppatitaskea3.databinding.ActivityRegistroBinding
+import org.json.JSONObject
 
 class RegistroActivity : AppCompatActivity() {
 
@@ -37,7 +41,29 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     private fun registrarUsuarioApiRest(vista: View) {
-
+        val urlapiregistro = "http://www.kreapps.biz/patitas/persona.php"
+        val parametroJson = JSONObject()
+        parametroJson.put("nombres", binding.etnombre.text.toString())
+        parametroJson.put("apellidos", binding.etapellido.text.toString())
+        parametroJson.put("email", binding.etemail.text.toString())
+        parametroJson.put("celular", binding.etcelular.text.toString())
+        parametroJson.put("usuario", binding.etusuarioreg.text.toString())
+        parametroJson.put("password", binding.etpasswordreg.text.toString())
+        val request = JsonObjectRequest(
+                Request.Method.PUT,
+                urlapiregistro,
+                parametroJson,
+                { response ->
+                    if(response.getBoolean("rpta")){
+                        setearControles()
+                    }
+                    mostrarMnesaje(vista, response.getString("mensaje"))
+                    binding.btnregistrarusuario.isEnabled = true
+                },{
+                    Log.e("LOGREG", it.message.toString())
+            binding.btnregistrarusuario.isEnabled = true
+        })
+        colapeticiones.add(request)
     }
 
     fun setearControles(){
