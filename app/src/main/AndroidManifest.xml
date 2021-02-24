@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppPatitasKEA3">
         <activity
-            android:name=".InicioActivity"
+            android:name=".ui.InicioActivity"
             android:label="@string/title_activity_inicio"
             android:theme="@style/Theme.AppPatitasKEA3.NoActionBar"></activity>
-        <activity android:name=".RegistroActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.RegistroActivity" />
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

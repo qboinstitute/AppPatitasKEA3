@@ -1,4 +1,4 @@
-package com.qbo.apppatitaskea3
+package com.qbo.apppatitaskea3.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +10,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
-import com.qbo.apppatitaskea3.databinding.ActivityInicioBinding
+import com.qbo.apppatitaskea3.R
 import com.qbo.apppatitaskea3.databinding.ActivityLoginBinding
 import org.json.JSONObject
 

@@ -1,4 +1,4 @@
-package com.qbo.apppatitaskea3
+package com.qbo.apppatitaskea3.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.qbo.apppatitaskea3.R
 
 class InicioActivity : AppCompatActivity() {
 
@@ -38,7 +39,7 @@ class InicioActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navlistamascota,  R.id.navvoluntario
+                    R.id.navlistamascota, R.id.navvoluntario
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
