@@ -45,4 +45,5 @@
     <string name="valbtnregvoluntario">REGISTRAR VOLUNTARIO</string>
     <string name="msgerrorcheckcvol">Acepte los términos y condiciones para ser voluntario</string>
     <string name="valtituloesvoluntario">GRACIAS POR SER PARTE DE NUESTRO EQUIPO</string>
+    <string name="msgcambiarusuario">Quitar el check para ingresar con otro usuario.</string>
 </resources>

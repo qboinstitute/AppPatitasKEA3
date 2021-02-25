@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.CheckBox
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -15,6 +16,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import com.qbo.apppatitaskea3.R
 import com.qbo.apppatitaskea3.databinding.ActivityLoginBinding
+import com.qbo.apppatitaskea3.db.entity.PersonaEntity
 import com.qbo.apppatitaskea3.viewmodel.PersonaViewModel
 import org.json.JSONObject
 
@@ -37,6 +39,28 @@ class LoginActivity : AppCompatActivity() {
         //Referencia a la clase ViewModel
         personaViewModel = ViewModelProvider(this)
             .get(PersonaViewModel::class.java)
+        //Validar si existen la preferencia recordardatos
+        if(verificarSharedPreferences()){
+            binding.chkrecordar.isChecked = true
+            binding.etusuario.isEnabled = false
+            binding.etpassword.isEnabled = false
+            binding.chkrecordar.text = getString(R.string.msgcambiarusuario)
+            personaViewModel.obtener()
+                    .observe(this, Observer {
+                        persona->
+                        persona?.let {
+                            binding.etusuario.setText(persona.usuario)
+                            binding.etpassword.setText(persona.password)
+                        }
+                    })
+        }else{
+            personaViewModel.eliminartodo()
+        }
+        //Actualizar preferencias con el checkrecordardatos
+        binding.chkrecordar.setOnClickListener {
+            setearValoresDeRecordar(it)
+        }
+
         binding.btnregistrar.setOnClickListener {
             startActivity(Intent(this,
                     RegistroActivity::class.java))
@@ -64,6 +88,10 @@ class LoginActivity : AppCompatActivity() {
                         if(verificarSharedPreferences()){
                             preferencias.edit().remove("recordardatos")
                                 .apply()
+                            personaViewModel.eliminartodo()
+                            binding.etusuario.isEnabled = true
+                            binding.etpassword.isEnabled = true
+                            binding.chkrecordar.text = getString(R.string.valchkrecordar)
                         }
                     }
                 }
@@ -86,6 +114,24 @@ class LoginActivity : AppCompatActivity() {
                 parametroJson,
                 { response ->
                     if(response.getBoolean("rpta")){
+                        val personaEntity = PersonaEntity(
+                                response.getString("idpersona").toInt(),
+                                response.getString("nombres"),
+                                response.getString("apellidos"),
+                                response.getString("email"),
+                                response.getString("celular"),
+                                response.getString("usuario"),
+                                response.getString("password"),
+                                response.getString("esvoluntario")
+                        )
+                        if(verificarSharedPreferences()){
+                            personaViewModel.actualizar(personaEntity)
+                        }else{
+                            personaViewModel.insertar(personaEntity)
+                            if(binding.chkrecordar.isChecked){
+                                preferencias.edit().putBoolean("recordardatos", true).apply()
+                            }
+                        }
                         startActivity(Intent(this,
                                 InicioActivity::class.java))
                         finish()

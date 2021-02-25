@@ -12,6 +12,7 @@ data class PersonaEntity(
     val nombres: String,
     val apellidos: String,
     val email: String,
+    val celular: String,
     val usuario: String,
     val password: String,
     val esvoluntario: String
