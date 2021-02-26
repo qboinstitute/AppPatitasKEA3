@@ -1,7 +1,10 @@
 package com.qbo.apppatitaskea3.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -13,6 +16,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.qbo.apppatitaskea3.R
 import com.qbo.apppatitaskea3.viewmodel.PersonaViewModel
 
@@ -47,16 +52,40 @@ class InicioActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        mostrarInfoAutenticacion()
     }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.inicio, menu)
         return true
     }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val idItem = item.itemId
+        if(idItem == R.id.action_cerrar){
+           startActivity(Intent(this,
+           LoginActivity::class.java))
+           finish()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    fun mostrarInfoAutenticacion(){
+        val tvnomusuario: TextView = navView.getHeaderView(0)
+                .findViewById(R.id.tvnomusuario)
+        val tvemailusuario: TextView = navView.getHeaderView(0)
+                .findViewById(R.id.tvemailusuario)
+        personaViewModel = ViewModelProvider(this)
+                .get(PersonaViewModel::class.java)
+        personaViewModel.obtener().observe(this, Observer {
+            persona->
+            persona?.let {
+                tvnomusuario.text = "${persona.nombres} ${persona.apellidos}"
+                tvemailusuario.text = persona.email
+            }
+        })
+    }
+
 }

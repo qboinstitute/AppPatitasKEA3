@@ -17,7 +17,7 @@
         android:src="@drawable/ic_security" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvemailusuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -36,7 +36,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/tvemailusuario">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etusuario"
